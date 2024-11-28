@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ví coin</title>
+    <title>Ví Coin</title>
     <style>
         table {
             width: 100%;
@@ -33,8 +33,9 @@
                 <th>Coin</th>
                 <th>Số coin</th>
                 <th>Giá mua (USD)</th>
-                <th>Giá hiện tại (USD)</th>
+                <th>Giá bán (USD)</th>
                 <th>Lời/Lỗ (USD)</th>
+                <th>% Lời/Lỗ</th>  <!-- New column for % profit/loss -->
             </tr>
         </thead>
         <tbody id="portfolio">
@@ -42,7 +43,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="4" class="total">Total Profit/Loss</td>
+                <td colspan="5" class="total">Total Profit/Loss</td>
                 <td id="totalProfitLoss" class="total">$0.00</td>
             </tr>
         </tfoot>
@@ -70,6 +71,10 @@
                     
                     const currentPrice = parseFloat(data.price);  // Get the current price of the coin from Binance
                     const profitLoss = (currentPrice * coin.amount) - (coin.purchasePrice * coin.amount);  // Calculate profit or loss
+                    
+                    // Calculate the percentage profit/loss
+                    const profitLossPercentage = ((currentPrice - coin.purchasePrice) / coin.purchasePrice) * 100;
+
                     totalProfitLoss += profitLoss;  // Add the profit/loss to the total
 
                     // Determine whether the profit/loss is positive or negative
@@ -83,6 +88,7 @@
                         <td>$${coin.purchasePrice.toFixed(8)}</td>
                         <td>$${currentPrice.toFixed(8)}</td>
                         <td class="${profitLossClass}">$${profitLoss.toFixed(2)}</td>
+                        <td class="${profitLossClass}">${profitLossPercentage.toFixed(2)}%</td>
                     `;
                     tbody.appendChild(row);  // Append the row to the table body
                 }
