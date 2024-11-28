@@ -85,7 +85,14 @@
                 console.error('Error fetching data:', error);
             }
         }
-
+// Cập nhật tổng lợi/lỗ
+        const totalProfitLossElement = document.getElementById('totalProfitLoss');
+        totalProfitLossElement.textContent = `$${totalProfitLoss.toFixed(2)}`;
+        totalProfitLossElement.className = totalProfitLoss >= 0 ? 'profit' : 'loss';
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
         // Gọi hàm fetchData khi trang web được tải
         fetchData();
     </script>
