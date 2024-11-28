@@ -70,7 +70,6 @@
                     const currentPrice = data[coin.symbol].usd;
                     const profitLoss = (currentPrice * coin.amount) - (coin.purchasePrice * coin.amount);
                     const profitLossClass = profitLoss >= 0 ? 'profit' : 'loss';
-
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${coin.symbol.toUpperCase()}</td>
